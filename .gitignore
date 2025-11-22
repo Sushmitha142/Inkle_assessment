@@ -1,0 +1,28 @@
+# Tourism AI Assistant - Multi-Agent System
+
+## Project Structure
+- `frontend/` - React + Vite frontend
+- `backend/` - FastAPI backend
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# Environment files
+.env

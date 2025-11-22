@@ -1,0 +1,263 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        font-family: 'Inter', system-ui, sans-serif;
+        @apply scroll-smooth;
+    }
+
+    body {
+        @apply bg-gradient-dark text-white min-h-screen;
+        background-attachment: fixed;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-dark-900;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-dark-600 rounded-full;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-dark-500;
+    }
+}
+
+@layer components {
+
+    /* Glass morphism effect */
+    .glass {
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        @apply bg-glass-dark border border-white/10;
+    }
+
+    .glass-darker {
+        backdrop-filter: blur(20px) saturate(200%);
+        -webkit-backdrop-filter: blur(20px) saturate(200%);
+        @apply bg-glass-darker border border-white/5;
+    }
+
+    /* Chat bubbles with stunning design */
+    .chat-bubble {
+        @apply max-w-[85%] p-5 rounded-2xl shadow-2xl transition-all duration-300 hover:scale-[1.02];
+        position: relative;
+        overflow: hidden;
+    }
+
+    .chat-bubble::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transition: left 0.6s;
+    }
+
+    .chat-bubble:hover::before {
+        left: 100%;
+    }
+
+    .chat-bubble.user {
+        @apply bg-gradient-primary text-white ml-auto;
+        box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .chat-bubble.assistant {
+        @apply glass text-gray-100 mr-auto;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+
+    /* Buttons with amazing effects */
+    .btn {
+        @apply px-6 py-3 rounded-xl font-semibold transition-all duration-300 focus:outline-none relative overflow-hidden;
+        backdrop-filter: blur(10px);
+        position: relative;
+    }
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.6s;
+        z-index: 1;
+    }
+
+    .btn:hover::before {
+        left: 100%;
+    }
+
+    .btn>* {
+        position: relative;
+        z-index: 2;
+    }
+
+    .btn-primary {
+        @apply bg-gradient-primary text-white shadow-lg;
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-primary:hover {
+        @apply shadow-xl transform -translate-y-0.5;
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-primary:disabled {
+        @apply opacity-50 cursor-not-allowed transform-none;
+        box-shadow: none;
+    }
+
+    .btn-secondary {
+        @apply glass text-gray-200 border border-white/20;
+    }
+
+    .btn-secondary:hover {
+        @apply bg-white/10 border-white/30 transform -translate-y-0.5;
+        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Input fields with glow effect */
+    .input-field {
+        @apply w-full px-5 py-4 glass rounded-xl focus:outline-none transition-all duration-300 text-white placeholder-gray-400;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .input-field:focus {
+        @apply ring-2 ring-primary-500/50;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5), 0 8px 25px rgba(59, 130, 246, 0.2);
+        transform: translateY(-1px);
+    }
+
+    /* Card components */
+    .card {
+        @apply glass rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02];
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .card:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Loading animation */
+    .loading-dots {
+        @apply flex space-x-1;
+    }
+
+    .loading-dot {
+        @apply w-2 h-2 bg-primary-400 rounded-full animate-bounce;
+    }
+
+    .loading-dot:nth-child(2) {
+        animation-delay: 0.1s;
+    }
+
+    .loading-dot:nth-child(3) {
+        animation-delay: 0.2s;
+    }
+
+    /* Header with glassmorphism */
+    .header {
+        @apply glass-darker sticky top-0 z-50 border-b border-white/10;
+        backdrop-filter: blur(20px);
+    }
+
+    /* Map preview enhancements */
+    .map-container {
+        @apply glass rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02];
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .map-container:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.2);
+    }
+
+    /* Status indicator */
+    .status-online {
+        @apply w-2 h-2 bg-emerald-400 rounded-full animate-pulse;
+        box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+    }
+
+    .status-offline {
+        @apply w-2 h-2 bg-red-400 rounded-full animate-pulse;
+        box-shadow: 0 0 6px rgba(248, 113, 113, 0.6);
+    }
+
+    /* Settings panel */
+    .settings-panel {
+        @apply glass-darker rounded-2xl shadow-2xl border border-white/10;
+        backdrop-filter: blur(20px) !important;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8) !important;
+        position: relative !important;
+        z-index: 999999 !important;
+        transform: translateZ(0) !important;
+        /* Force hardware acceleration */
+    }
+
+    /* Quick actions */
+    .quick-action {
+        @apply glass rounded-xl px-4 py-2 text-sm transition-all duration-300 hover:scale-105 border border-white/10;
+    }
+
+    .quick-action:hover {
+        @apply bg-white/10 border-white/20;
+        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Custom scrollbar for chat area */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        @apply bg-white/20 rounded-full;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        @apply bg-white/30;
+    }
+
+    /* Text gradient effect */
+    .text-gradient-primary {
+        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Floating elements */
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-float:nth-child(2) {
+        animation-delay: 2s;
+    }
+
+    .animate-float:nth-child(3) {
+        animation-delay: 4s;
+    }
+}
