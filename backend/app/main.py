@@ -52,11 +52,12 @@ async def root():
 
 @app.get("/health")
 async def health_check():
-    """Detailed health check"""
+    """Detailed health check with keep-alive"""
     return {
         "status": "healthy",
         "message": "Multi-Agent Tourism API is operational",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "timestamp": str(asyncio.get_event_loop().time())
     }
 
 
